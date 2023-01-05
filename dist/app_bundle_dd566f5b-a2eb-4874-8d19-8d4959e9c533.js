@@ -622,7 +622,7 @@ else
 {files_show_groups=true}
 return files_show_groups;};async function conf_set_files_show_groups(files_show_groups)
 {var res=await __db.conf_set_files_show_groups(files_show_groups);if(res!==1)
-{}};window.addEventListener('load',async()=>{const registration=await navigator.serviceWorker.register("sw.js")
+{}};window.addEventListener('load',async()=>{const registration=await navigator.serviceWorker.register("sw.js",{scope:'/skyguardian/'})
 if(registration.waiting)
 {var r=await update_app(registration);}
 registration.addEventListener("updatefound",()=>{if(registration.installing){registration.installing.addEventListener("statechange",()=>{if(registration.waiting){if(navigator.serviceWorker.controller){update_app(registration)}else{}}})}});var refreshing=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!refreshing){window.location.reload()
