@@ -1,0 +1,16 @@
+/restores
+/nwjs_lin
+/nwjs_win
+/wrap_lin
+/wrap_win
+/dist/app_lin/*
+/dist/app_win/*
+/scripts
+/styles
+/images
+/sw.js
+/index.html
+/make_js.py
+/manifest.json
+/package.json
+/restore_data.py

@@ -1,0 +1,13 @@
+{
+    "name":"skyguardian",
+    "main":"index.html",
+    "window":
+    {
+        "toolbar": false,
+        "min_width":1024,
+        "min_height":768,
+        "icon":"images/icon_any.png",
+        "position":"center"
+    },
+    "chromium-args": "--user-data-dir=./data"
+}

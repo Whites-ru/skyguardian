@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="ru" translate="no" style="overflow: hidden;">
+  <head>
+    
+    <title>SkyGuardian</title>
+
+    <meta charset="utf8" />
+
+    <link rel="stylesheet" href="/app_bundle_066eea26-a6c7-4db3-bd0c-4354e5aaa49a.css">
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta property="og:image" content="images/maskable_icon_x512.png">
+
+    <meta name="theme-color" content="white"/>
+    <link rel="apple-touch-icon" href="images/icon_x192.png">
+
+    <link rel="icon" href="/images/icon.png" type="image/x-icon">
+  </head>
+  <body id="ui_body">
+
+    <div id="ui_main_page" class="d-none">
+      <header id="ui_header"" class="py-3 mb-3 border-bottom bg-light shadow-sm container-fluid">
+        <div class="row">
+          
+          <div id="ui_main_menu_div" style="width: 80px !important;">
+            <a class="d-flex align-items-center link-dark text-decoration-none p-2" data-bs-toggle="offcanvas" href="#ui_main_menu" role="button" aria-controls="ui_main_menu">
+              <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </a>
+          </div>
+
+          <div id="ui_main_return_div" style="width: 80px !important;">
+            <a id="ui_main_return_button" class="d-flex align-items-center link-dark text-decoration-none p-2" role="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+              </svg>
+            </a>
+          </div>
+
+          <h4 id="ui_conf_header" class="d-flex justify-content-center w-100 col align-items-center" style="padding-right: 85px;">Настройки</h4>
+          <h4 id="ui_file_work_header" class="d-flex justify-content-center w-100 col align-items-center" style="padding-right: 85px;">Работа с файлом</h4>
+
+          <div id="ui_div_search_cont" style="margin-top: 5px; width: calc(100% - 80px) !important; padding: 0;">
+            <form class="w-100 me-3 row">
+              <input id="ui_search_text" type="search" class="form-control col w-100" placeholder="Найти..." aria-label="Search">
+              <button class="btn form-control" type="button" id="ui_filter_button" style="width: auto;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <div id="ui_item_gen_pass_div" class="col d-flex" style="margin-top: 5px;">
+            <h4 class="d-flex justify-content-center w-100 align-items-center">Работа с данными</h4>
+            <a id="ui_item_gen_pass_button" class="d-flex align-items-center link-dark text-decoration-none p-2 justify-content-end" role="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" fill="currentColor" class="bi bi-123" viewBox="0 0 16 16">
+                <path d="M2.873 11.297V4.142H1.699L0 5.379v1.137l1.64-1.18h.06v5.961h1.174Zm3.213-5.09v-.063c0-.618.44-1.169 1.196-1.169.676 0 1.174.44 1.174 1.106 0 .624-.42 1.101-.807 1.526L4.99 10.553v.744h4.78v-.99H6.643v-.069L8.41 8.252c.65-.724 1.237-1.332 1.237-2.27C9.646 4.849 8.723 4 7.308 4c-1.573 0-2.36 1.064-2.36 2.15v.057h1.138Zm6.559 1.883h.786c.823 0 1.374.481 1.379 1.179.01.707-.55 1.216-1.421 1.21-.77-.005-1.326-.419-1.379-.953h-1.095c.042 1.053.938 1.918 2.464 1.918 1.478 0 2.642-.839 2.62-2.144-.02-1.143-.922-1.651-1.551-1.714v-.063c.535-.09 1.347-.66 1.326-1.678-.026-1.053-.933-1.855-2.359-1.845-1.5.005-2.317.88-2.348 1.898h1.116c.032-.498.498-.944 1.206-.944.703 0 1.206.435 1.206 1.07.005.64-.504 1.106-1.2 1.106h-.75v.96Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </header>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="ui_main_menu" aria-labelledby="ui_main_menu">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="ui_main_menu_label">Меню</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div>
+            <ul class="list-group list-group-flush ui_main_menu_list">
+              <li class="list-group-item ui_main_menu_list_elem" id="ui_item_list_button">Записи</li>
+              <li class="list-group-item ui_main_menu_list_elem" id="ui_file_list_button">Файлы</li>
+              <li class="list-group-item ui_main_menu_list_elem" id="ui_conf_button">Настройки</li>
+              <li class="list-group-item ui_main_menu_list_elem" id="ui_about_button">О программе</li>
+              <li class="list-group-item ui_main_menu_list_elem" id="ui_logout_button">Выход</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="ui_div_cont_item" class="container-fluid pb-3">
+        <div class="row" style="height: inherit;">
+            <div id="ui_item_group_menu_div" class="col position-sticky h-100"  style="overflow: auto; max-width: 300px;">
+                <ul id="ui_item_group_menu" class="nav nav-pills flex-column"></ul>
+                <div id="ui_item_group_menu_no_data" class="d-none align-items-center d-flex h-100 justify-content-center text-muted">Нет данных</div>
+            </div>
+            <div id="ui_list_items_div" class="border-start h-100" style="overflow:auto;">
+              <div class="container-fluid h-100">
+                <div class="row align-content-start" style="height: inherit;">
+                    <div id="ui_list_items" class="row g-2" style="margin-top: 0;"></div>
+                    <div id="ui_list_items_no_data" class="d-none align-items-center d-flex h-100 justify-content-center text-muted">Нет данных</div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="ui_div_cont_file" class="container-fluid pb-3">
+        <div class="row" style=" height: inherit;">
+            <div id="ui_file_group_menu_div" class="col position-sticky h-100"  style="overflow: auto; max-width: 300px;">
+                <ul id="ui_file_group_menu" class="nav nav-pills flex-column"></ul>
+                <div id="ui_file_group_menu_no_data" class="d-none align-items-center d-flex h-100 justify-content-center text-muted">Нет данных</div>
+            </div>
+            <div id="ui_list_files_div" class="border-start h-100" style="overflow:auto;">
+              <div class="container-fluid h-100">
+                <div class="row align-content-start" style="height: inherit;">
+                  <div id="ui_list_files" class="row row-cols-1 row-cols-md-2 g-2" style="margin-top: 0;"></div>
+                  <div id="ui_list_files_no_data" class="d-none align-items-center d-flex h-100 justify-content-center text-muted">Нет данных</div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div id="ui_div_cont_conf" class="container-fluid pb-3" style="overflow: auto;">
+        
+        <div class="accordion" id="ui_div_cont_conf_accordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="ui_div_cont_conf_accordion_h1">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#ui_div_cont_conf_accordion_p1" aria-expanded="true" aria-controls="ui_div_cont_conf_accordion_p1">
+                Изменение мастер-пароля
+              </button>
+            </h2>
+            <div id="ui_div_cont_conf_accordion_p1" class="accordion-collapse collapse show" aria-labelledby="ui_div_cont_conf_accordion_h1" data-bs-parent="#ui_div_cont_conf_accordion">
+              <div class="accordion-body">
+                  <form class="row">
+                    <div class="container-fluid">
+                      <label for="ui_new_m_pass" class="col-sm-2 form-label">Мастер-пароль</label>
+                      <div class="col d-flex flex-wrap">
+                        <span class="col input-group-text" style="max-width: 400px;">Введите новый пароль и повторите ввод</span>
+                        <input id="ui_new_m_pass" type="password" class="form-control" maxlength="365" style="min-width: 200px; max-width: 250px;" placeholder="Новый пароль">
+                        <input id="ui_new_m_pass_repeate" type="password" class="form-control" maxlength="365" style="min-width: 200px; max-width: 250px;" placeholder="Повтор нового пароля">
+                        <button id="ui_new_m_pass_button" class="btn btn-outline-secondary" type="button">Сменить</button>
+                      </div>
+                    </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="ui_div_cont_conf_accordion_h2">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ui_div_cont_conf_accordion_p2" aria-expanded="false" aria-controls="ui_div_cont_conf_accordion_p2">
+                Экспорт\Импорт данных
+              </button>
+            </h2>
+            <div id="ui_div_cont_conf_accordion_p2" class="accordion-collapse collapse" aria-labelledby="ui_div_cont_conf_accordion_h2" data-bs-parent="#ui_div_cont_conf_accordion">
+              <div class="accordion-body">
+                <form class="row">
+                  <div class="col-md-6">
+                    <div id="ui_data_export_import_div">
+                      <button id="ui_data_export_button" type="button" class="btn btn-light">Экспорт</button>
+                      <button id="ui_data_import_button" type="button" class="btn btn-light">Импорт</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="ui_div_cont_conf_accordion_h3">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ui_div_cont_conf_accordion_p3" aria-expanded="false" aria-controls="ui_div_cont_conf_accordion_p3">
+                Работа с группами
+              </button>
+            </h2>
+            <div id="ui_div_cont_conf_accordion_p3" class="accordion-collapse collapse" aria-labelledby="ui_div_cont_conf_accordion_h3" data-bs-parent="#ui_div_cont_conf_accordion">
+              <div class="accordion-body">
+                <form class="row">
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <select id="ui_item_group_type" class="form-select">
+                        <option selected disabled>Тип...</option>
+                        <option value="1">Записи</option>
+                        <option value="2">Файлы</option>
+                      </select>
+                      <label for="ui_item_group_type" class="form-label">Тип группы</label>
+                    </div>
+                  </div>
+        
+                  <div class="col-md-6 mb-3">
+                    <div class="form-floating ">
+                      <select id="ui_item_groups" class="form-select">
+                      </select>
+                      <label for="ui_item_groups" class="form-label">Группа</label>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                    <input type="text" class="form-control" id="ui_item_group_name" maxlength="100" placeholder="group name">
+                    <label for="ui_item_group_name" class="form-label">Имя</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label for="ui_item_group_color" class="form-label">Цвет</label>
+                    <input type="color" class="form-control form-control-color" id="ui_item_group_color" value="#00CC22" title="Выберите цвет">
+                  </div>
+                  
+                  <div class="col-12 py-2">
+                    <div role="group">
+                      <button id="ui_item_group_add" type="button" class="btn btn-light">Добавить</button>
+                      <button id="ui_item_group_save" type="button" class="btn btn-light">Сохранить</button>
+                      <button id="ui_item_group_edit" type="button" class="btn btn-light">Изменить</button>
+                      <button id="ui_item_group_del" type="button" class="btn btn-light">Удалить</button>
+                      <button id="ui_item_group_cancel" type="button" class="btn btn-light">Отмена</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="ui_div_cont_conf_accordion_h4">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ui_div_cont_conf_accordion_p4" aria-expanded="false" aria-controls="ui_div_cont_conf_accordion_p4">
+                Время бездействия перед блокировкой
+              </button>
+            </h2>
+            <div id="ui_div_cont_conf_accordion_p4" class="accordion-collapse collapse" aria-labelledby="ui_div_cont_conf_accordion_h4" data-bs-parent="#ui_div_cont_conf_accordion">
+              <div class="accordion-body">
+                <form class="row">
+                  <div>
+                    <label id="ui_idle_time_range_label" for="ui_idle_time_range" class="form-label">Время</label>
+                    <input type="range" class="form-range" min="10" max="60" step="5" id="ui_idle_time_range">
+                  </div>
+                  <div>
+                    <button id="ui_idle_time_save_button" type="button" class="btn btn-light">Сохранить</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="ui_div_cont_item_work" class="container-fluid pb-3">
+        <form id="ui_div_cont_item_work_form" style="overflow: auto;">
+
+          <div class="form-floating mb-3">
+            <select id="ui_item_group" class="form-select">
+            </select>
+            <label for="ui_item_group" class="form-label">Группа</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="ui_item_name" maxlength="100" placeholder="item name">
+            <label for="ui_item_name" class="form-label">Имя</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <textarea class="form-control" id="ui_item_descr" style="min-height: 100px;" maxlength="1024" placeholder="item descr">-</textarea>
+            <label for="ui_item_descr" class="form-label">Описание</label>
+          </div>
+          
+          <div>
+            <div class="input-group mb-3 row" style="margin: 0;">
+              <div class="form-floating col" style="padding: 0;">
+                <input type="text" class="form-control" id="ui_item_login" aria-describedby="ui_copy_login_button" maxlength="100" placeholder="item login">
+                <label for="ui_item_login" class="form-label ">Логин</label>
+              </div>
+
+              <button class="btn btn-outline-secondary col-auto" type="button" id="ui_copy_login_button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- <div>  -->
+            <div class="input-group mb-3 row" style="margin: 0;">
+              <div class="form-floating col" style="padding: 0;">
+                <input type="text" class="form-control" id="ui_item_pass" aria-describedby="ui_copy_pass_button" maxlength="365" placeholder="item password">
+                <label for="ui_item_pass" class="form-label">Пароль</label>
+              </div>
+              <button class="btn btn-outline-secondary col-auto" type="button" id="ui_copy_pass_button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg>
+              </button>
+            </div>
+          <!-- </div> -->
+
+          <div class="form-floating" style="padding-bottom: 10px;">
+            <textarea class="form-control" id="ui_item_info" style="min-height: 180px;" maxlength="1024" placeholder="item info">-</textarea>
+            <label for="ui_item_info" class="form-label">Дополнительная информация</label>
+          </div>
+          
+        </form>
+
+        <div class="border-top" style="padding-top: 5px;margin-top: 5px;" id="ui_div_cont_item_work_form_buttons">
+          <div role="group">
+            <button id="ui_item_save_button" type="button" class="btn btn-light">Сохранить</button>
+            <button id="ui_item_edit_button" type="button" class="btn btn-light">Изменить</button>
+            <button id="ui_item_del_button" type="button" class="btn btn-light">Удалить</button>
+            <button id="ui_item_cancel_button" type="button" class="btn btn-light">Отмена</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="ui_div_cont_file_work" class="container-fluid pb-3" style="overflow: auto;">
+        <form>
+
+          <div class="col-md-6 mb-3">
+            <div class="form-floating">
+              <select id="ui_file_group" class="form-select">
+              </select>
+              <label for="ui_file_group" class="form-label">Группа</label>
+            </div>
+          </div>
+
+          <div class="border-bottom">
+              <label id="ui_file_name" class="form-label">Имя файла: не выбрано</label>
+              <input type="file" id="ui_add_file_selector" style="display: none;"/>
+              <div class="py-2">
+                <button id="ui_add_file_button" type="button" class="btn btn-light">Открыть из файла</button>
+                <button id="ui_get_file_button" type="button" class="btn btn-light">Скачать файл</button>
+              </div>
+          </div>
+
+          <div class="col-md-6" style="padding-top: 5px;">
+            <div role="group">
+              <button id="ui_file_save_button" type="button" class="btn btn-light">Сохранить</button>
+              <button id="ui_file_del_button" type="button" class="btn btn-light">Удалить</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <div id="ui_float_action_button" class="bg-body rounded-circle shadow text-center">
+        <a class="align-items-center mb-2 mb-lg-0 link-dark text-decoration-none" role="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" fill="currentColor" class="bg-light rounded-circle shadow-lg bi bi-plus-lg" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div id="ui_float_groups_button" class="bg-body text-center">
+        <a class="align-items-center mb-2 mb-lg-0 link-dark text-decoration-none" role="button">
+          
+          <svg id="ui_float_groups_button_left" xmlns="http://www.w3.org/2000/svg" width="24px" height="36px" fill="currentColor" class="bg-light rounded shadow-sm bi bi-chevron-double-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+
+          <svg id="ui_float_groups_button_right" xmlns="http://www.w3.org/2000/svg" width="24px" height="35px" fill="currentColor" class="d-none bg-light rounded shadow-sm bi bi-chevron-double-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <div id="ui_login_page">
+        <h2 style="text-align: center;">SkyGuardian</h2>
+        <form>
+          <div class="form-group">
+            <input class="form-control" maxlength="365" id="ui_pswd" type="password"/>
+          </div>
+          <div class="d-flex justify-content-center p-2">
+            <button id="ui_login_button" class="btn btn-light form-control" style="width: 100px;">Войти</button>
+          </div>
+        </form> 
+    </div>
+
+    <!-- Modal -->
+
+    <div id="ui_about_modal" class="modal fade" tabindex="-1" aria-labelledby="ui_about_modal_label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ui_about_modal_label">О программе</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex justify-content-center"><b>SkyGuardian</b></div>
+            <div class="d-flex justify-content-between"><small class="text-muted">Автор: Sergey White</small></div>
+            <div class="d-flex justify-content-between"><small class="text-muted">Сборка: 066eea26-a6c7-4db3-bd0c-4354e5aaa49a от 05.01.2023 15:07:18</small></div>
+            <small class="text-muted">Создано с использованием:</small>
+            <div class="d-flex justify-content-between">
+              <ol class="list-group-numbered">
+                <li class="text-muted"><small class="text-muted">Bootstrap 5.2.3</small></li>
+                <li class="text-muted"><small class="text-muted">localForage 1.10.0</small></li>
+                <li class="text-muted"><small class="text-muted">NW.js 0.71.1</small></li>
+              </ol>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ui_msg" class="modal fade" tabindex="-1" style="z-index: 9999;">
+      <div id="ui_msg_div" class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="ui_msg_title" class="modal-title"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="ui_msg_text" class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ui_msg_result" class="modal fade" tabindex="-1" style="z-index: 9999;">
+      <div id="ui_msg_result_div" class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="ui_msg_result_title" class="modal-title"></h5>
+          </div>
+          <div id="ui_msg_result_text" class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button id="ui_msg_result_yes_button" type="button" class="btn btn-secondary">Да</button>
+            <button id="ui_msg_result_no_button" type="button" class="btn btn-secondary">Нет</button>
+            <button id="ui_msg_result_ok_button" type="button" class="btn btn-secondary">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ui_export_data" class="modal fade" tabindex="-1">
+      <div id="ui_export_data_div" class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="ui_export_data_title" class="modal-title">Экспорт данных</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <form class="p-3">
+
+            <div class="form-check form-switch" style="padding-bottom: 5px;">
+              <input class="form-check-input" type="checkbox" id="ui_data_export_with_files">
+              <label class="form-check-label" for="ui_data_export_with_files">С файлами</label>
+            </div>
+
+            <div class="mb-2">
+              <button id="ui_data_export_create_button" type="button" class="btn btn-light">Создать экспорт данных</button>  
+            </div>
+            
+            <div class="form-floating">
+              <textarea class="form-control col" id="ui_data_export_pass" style="height: 200px;" readonly placeholder="export pass"></textarea>
+              <label for="ui_data_export_pass" class="form-label">Пароль</label>
+            </div>
+          </form>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ui_import_data" class="modal fade" tabindex="-1">
+      <div id="ui_import_data_div" class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="ui_import_data_title" class="modal-title">Импорт данных</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <form class="p-2">
+
+            <div class="col-md-6">
+              <p>Файл экспорта</p>
+              <input type="file" id="ui_import_export_data_file_selector" style="display: none;"/>
+              <div class="mb-2">
+                  <button id="ui_import_export_data_file_button" type="button" class="btn btn-light">Открыть из файла</button>
+              </div>
+            </div>
+
+            <div class="form-floating mb-2">
+              <textarea class="form-control" id="ui_import_export_data_pass" style="height: 200px;" maxlength="365" placeholder="export data pass"></textarea>
+              <label for="ui_import_export_data_pass" class="form-label">Пароль</label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="ui_import_export_data_type">
+              <label class="form-check-label" for="ui_import_export_data_type">Все записи</label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="ui_import_export_data_with_files">
+              <label class="form-check-label" for="ui_import_export_data_with_files">С файлами</label>
+            </div>
+
+            <div>
+              <button id="ui_import_export_data_import_button" type="button" class="btn btn-light">Импортировать данные</button>  
+            </div>
+              
+          </form>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal -->
+
+
+    <div class="position-fixed translate-middle-x p-3" style="z-index: 9999;bottom: 5%;left: 50%;">
+      <div id="ui_toast" class="toast align-items-center text-white bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div id="ui_toast_text" class="toast-body">
+        </div>
+          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="ui_preload" class="vw-100 vh-100 d-none" style="z-index: 99999;display: block;position: absolute;top: 0;left: 0;right: 0;bottom: 0;"></div>
+    
+    <script src="/app_bundle_066eea26-a6c7-4db3-bd0c-4354e5aaa49a.js"></script>
+  </body>
+</html>
