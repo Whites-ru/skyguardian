@@ -13,4 +13,5 @@
 /make_js.py
 /manifest.json
 /package.json
+/dist/package.json
 /restore_data.py
