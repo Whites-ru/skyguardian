@@ -52,7 +52,7 @@
         "purpose": "any"
     }
   ],
-  "start_url": "/",
+  "start_url": "/skyguardian/",
   "background_color": "white",
   "display": "standalone",
   "scope": "/",
