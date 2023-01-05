@@ -1,6 +1,6 @@
 // модуль работы Service Worker
 
-const cacheName = "app_cache_97bfd2b1-7bae-459e-8175-ecff4fcbe0fc"; // имя кэша приложения
+const cacheName = "app_cache_9d97e246-2ad8-4066-aa96-10fcda168ccd"; // имя кэша приложения
 
 // установка и открытие кэша
 self.addEventListener("install", (e) => {
@@ -10,7 +10,7 @@ self.addEventListener("install", (e) => {
             "./index.html",
             "./manifest.json",
 
-            "./app_bundle_97bfd2b1-7bae-459e-8175-ecff4fcbe0fc.css",
+            "./app_bundle_9d97e246-2ad8-4066-aa96-10fcda168ccd.css",
             "./images/icon_any.png",
             "./images/icon_x48.png",
             "./images/icon_x72.png",
@@ -21,7 +21,7 @@ self.addEventListener("install", (e) => {
             "./images/icon_x512.png",
             "./images/icon.png",
 
-            "./app_bundle_97bfd2b1-7bae-459e-8175-ecff4fcbe0fc.js"
+            "./app_bundle_9d97e246-2ad8-4066-aa96-10fcda168ccd.js"
         ])),
     );
 });
