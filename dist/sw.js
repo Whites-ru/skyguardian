@@ -1,27 +1,27 @@
 // модуль работы Service Worker
 
-const cacheName = "app_cache_6d95a1b3-bba3-4c02-bd1f-aedde073c022"; // имя кэша приложения
+const cacheName = "app_cache_a82751de-81c2-4687-ad57-ffbc4e1167a8"; // имя кэша приложения
 
 // установка и открытие кэша
 self.addEventListener("install", (e) => {
     e.waitUntil(
         caches.open(cacheName).then((cache) => cache.addAll([
             "/",
-            "/index.html",
-            "/manifest.json",
+            "index.html",
+            "manifest.json",
 
-            "app_bundle_6d95a1b3-bba3-4c02-bd1f-aedde073c022.css",
-            "/images/icon_any.png",
-            "/images/icon_x48.png",
-            "/images/icon_x72.png",
-            "/images/icon_x96.png",
-            "/images/icon_x128.png",
-            "/images/icon_x192.png",
-            "/images/icon_x384.png",
-            "/images/icon_x512.png",
-            "/images/icon.png",
+            "app_bundle_a82751de-81c2-4687-ad57-ffbc4e1167a8.css",
+            "images/icon_any.png",
+            "images/icon_x48.png",
+            "images/icon_x72.png",
+            "images/icon_x96.png",
+            "images/icon_x128.png",
+            "images/icon_x192.png",
+            "images/icon_x384.png",
+            "images/icon_x512.png",
+            "images/icon.png",
             
-            "app_bundle_6d95a1b3-bba3-4c02-bd1f-aedde073c022.js"
+            "app_bundle_a82751de-81c2-4687-ad57-ffbc4e1167a8.js"
         ])),
     );
 });
