@@ -640,7 +640,7 @@ function ui_copy_text(val)
 else if(op==2)
 {document.getElementById("ui_item_name").value="";document.getElementById("ui_item_descr").value="-";document.getElementById("ui_item_login").value="";document.getElementById("ui_item_pass").value="";document.getElementById("ui_item_info").value="-";document.getElementById("ui_item_edit_button").disabled=true;document.getElementById("ui_item_save_button").disabled=false;document.getElementById("ui_item_del_button").disabled=true;document.getElementById("ui_item_cancel_button").disabled=true;document.getElementById("ui_item_name").disabled=false;document.getElementById("ui_item_descr").disabled=false;document.getElementById("ui_item_login").disabled=false;document.getElementById("ui_item_pass").disabled=false;document.getElementById("ui_item_info").disabled=false;document.getElementById("ui_item_group").disabled=true;__is_edit_item=false;__cur_id_item="";}
 else if(op==3)
-{document.getElementById("ui_file_name").innerHTML="Имя файла: не выбрано";document.getElementById("ui_add_file_selector").value="";document.getElementById("ui_item_save_button").disabled=false;document.getElementById("ui_item_del_button").disabled=false;document.getElementById("ui_add_file_button").disabled=false;__is_edit_item=false;__cur_id_item="";}
+{document.getElementById("ui_file_name").innerHTML="Имя файла: не выбран";document.getElementById("ui_add_file_selector").value="";document.getElementById("ui_item_save_button").disabled=false;document.getElementById("ui_item_del_button").disabled=false;document.getElementById("ui_add_file_button").disabled=false;__is_edit_item=false;__cur_id_item="";}
 else if(op==4)
 {document.getElementById("ui_item_group_menu").innerHTML="";document.getElementById("ui_list_items").innerHTML="";document.getElementById("ui_file_group_menu").innerHTML="";document.getElementById("ui_list_files").innerHTML="";document.getElementById("ui_item_groups").innerHTML="";document.getElementById("ui_item_group").innerHTML="";document.getElementById("ui_file_group").innerHTML="";document.getElementById("ui_search_text").value="";ui_clear(1);ui_clear(2);ui_clear(3);ui_clear(5);ui_clear(6);ui_clear(7);var obj=bootstrap.Modal.getInstance(document.getElementById("ui_about_modal"));if(obj!==undefined&&obj!==null)
 {obj.hide();}
@@ -695,12 +695,12 @@ obj=null;f_show_hide_no_data(false);}};async function on_click_item(e)
 {e.preventDefault();__cur_id_item=e.target.getAttribute("id_item");if(__cur_id_item!==undefined&&__cur_id_item!==null)
 {var res=await item_get(__cur_id_item);document.getElementById("ui_div_cont_item_work").classList.remove("d-none");document.getElementById("ui_div_cont_item").classList.add("d-none");document.getElementById("ui_main_return_div").classList.remove("d-none");document.getElementById("ui_main_menu_div").classList.add("d-none");document.getElementById("ui_float_action_button").classList.add("d-none");document.getElementById("ui_float_groups_button").classList.add("d-none");document.getElementById("ui_item_name").disabled=true;document.getElementById("ui_item_descr").disabled=true;document.getElementById("ui_item_login").disabled=true;document.getElementById("ui_item_pass").disabled=true;document.getElementById("ui_item_info").disabled=true;document.getElementById("ui_item_group").disabled=true;document.getElementById("ui_item_edit_button").disabled=false;document.getElementById("ui_item_save_button").disabled=true;document.getElementById("ui_item_del_button").disabled=true;document.getElementById("ui_item_cancel_button").disabled=true;document.getElementById("ui_div_search_cont").classList.add("d-none");document.getElementById("ui_item_gen_pass_div").classList.remove("d-none");ui_calc_size();if(document.getElementById("ui_div_cont_item_work_form").scrollTop>0)
 {document.getElementById("ui_div_cont_item_work_form").scroll({top:0,behavior:'smooth'});}
-__id_page=3;}};async function on_click_file(e)
+__id_page=3;ui_tooltip_hide_all();ui_tooltip_init();}};async function on_click_file(e)
 {e.preventDefault();__cur_id_file=e.target.getAttribute("id_item");if(__cur_id_file!==undefined&&__cur_id_file!==null)
 {var res=await file_get(__cur_id_file);document.getElementById("ui_div_cont_file_work").classList.remove("d-none");document.getElementById("ui_div_cont_file").classList.add("d-none");document.getElementById("ui_main_return_div").classList.remove("d-none");document.getElementById("ui_main_menu_div").classList.add("d-none");document.getElementById("ui_float_action_button").classList.add("d-none");document.getElementById("ui_float_groups_button").classList.add("d-none");document.getElementById("ui_file_work_header").classList.remove("d-none");var obj=bootstrap.Offcanvas.getInstance(document.getElementById("ui_main_menu"))
 if(obj!==undefined&&obj!==null)
 {obj.hide();}
-obj=null;document.getElementById("ui_add_file_selector").value="";document.getElementById("ui_add_file_button").disabled=true;document.getElementById("ui_file_save_button").disabled=true;document.getElementById("ui_file_del_button").disabled=false;document.getElementById("ui_get_file_button").disabled=false;document.getElementById("ui_div_search_cont").classList.add("d-none");document.getElementById("ui_file_group").disabled=true;document.getElementById("ui_file_group").value=__cur_id_file_group;ui_calc_size();__id_page=4;}};function ui_item_group_create(id,name,color)
+obj=null;document.getElementById("ui_add_file_selector").value="";document.getElementById("ui_add_file_button").disabled=true;document.getElementById("ui_file_save_button").disabled=true;document.getElementById("ui_file_del_button").disabled=false;document.getElementById("ui_get_file_button").disabled=false;document.getElementById("ui_div_search_cont").classList.add("d-none");document.getElementById("ui_file_group").disabled=true;document.getElementById("ui_file_group").value=__cur_id_file_group;ui_calc_size();__id_page=4;ui_tooltip_hide_all();ui_tooltip_init();}};function ui_item_group_create(id,name,color)
 {var el_text="<li class=\"nav-item\">"+
 "<a class=\"ui_item_group_menu_el nav-link d-flex\" style=\"color:"+color+";\" id_group=\""+id+"\">"+
 "<span class=\"w-100\" style=\"padding-right: 10px;\" onclick=\"on_click_item_group(event)\" id_group=\""+id+"\">"+name+"</span>"+
@@ -771,7 +771,7 @@ else
 }
 obj=document.querySelector(".ui_main_menu_list_elem.active");if((obj!==null)&&(obj!==undefined))
 {obj.classList.remove("active");}
-document.getElementById("ui_item_list_button").classList.add("active");obj=null;ui_clear(1);ui_clear(2);ui_calc_size();ui_float_groups_button_init();__id_page=1;f_show_hide_no_data(false);};function show_msg(title,text,is_large)
+document.getElementById("ui_item_list_button").classList.add("active");obj=null;ui_clear(1);ui_clear(2);ui_calc_size();ui_float_groups_button_init();__id_page=1;f_show_hide_no_data(false);ui_tooltip_hide_all();ui_tooltip_init();};function show_msg(title,text,is_large)
 {if(is_large==true)
 {document.querySelector("#ui_msg_div").classList.add("modal-lg");document.querySelector("#ui_msg_text").style="min-height: 200px;word-wrap: break-word;width: inherit";}
 else
@@ -832,7 +832,7 @@ else
 }
 obj=document.querySelector(".ui_main_menu_list_elem.active");if((obj!==null)&&(obj!==undefined))
 {obj.classList.remove("active");}
-document.getElementById("ui_file_list_button").classList.add("active");obj=null;ui_clear(3);ui_calc_size();ui_float_groups_button_init();__id_page=2;f_show_hide_no_data(false);};function ui_filter()
+document.getElementById("ui_file_list_button").classList.add("active");obj=null;ui_clear(3);ui_calc_size();ui_float_groups_button_init();__id_page=2;f_show_hide_no_data(false);ui_tooltip_hide_all();ui_tooltip_init();};function ui_filter()
 {var text=document.getElementById("ui_search_text").value;if(__cur_item_type==1)
 {ui_filter_items(text);}
 else if(__cur_item_type==2)
@@ -894,14 +894,13 @@ else
 {if(document.getElementById("ui_item_group_menu_div").classList.contains("d-none")==false)
 {document.getElementById("ui_float_groups_button_left").classList.remove("d-none");document.getElementById("ui_float_groups_button_right").classList.add("d-none");document.getElementById("ui_list_items_div").classList.add("border-start");}
 else
-{document.getElementById("ui_float_groups_button_left").classList.add("d-none");document.getElementById("ui_float_groups_button_right").classList.remove("d-none");document.getElementById("ui_list_items_div").classList.remove("border-start");}
-ui_calc_position();}
+{document.getElementById("ui_float_groups_button_left").classList.add("d-none");document.getElementById("ui_float_groups_button_right").classList.remove("d-none");document.getElementById("ui_list_items_div").classList.remove("border-start");}}
 else if(__cur_item_type==2)
 {if(document.getElementById("ui_file_group_menu_div").classList.contains("d-none")==false)
 {document.getElementById("ui_float_groups_button_left").classList.remove("d-none");document.getElementById("ui_float_groups_button_right").classList.add("d-none");document.getElementById("ui_list_files_div").classList.add("border-start");}
 else
-{document.getElementById("ui_float_groups_button_left").classList.add("d-none");document.getElementById("ui_float_groups_button_right").classList.remove("d-none");document.getElementById("ui_list_files_div").classList.remove("border-start");}
-ui_calc_position();}};function f_show_hide_no_data(is_filter)
+{document.getElementById("ui_float_groups_button_left").classList.add("d-none");document.getElementById("ui_float_groups_button_right").classList.remove("d-none");document.getElementById("ui_list_files_div").classList.remove("border-start");}}
+ui_calc_position();};function f_show_hide_no_data(is_filter)
 {if(is_filter==false)
 {if(__cur_item_type==1)
 {if(document.getElementsByClassName("ui_item_group_menu_el").length==0)
@@ -967,7 +966,7 @@ else
 {document.getElementById("ui_div_cont_conf").scroll({top:0,behavior:'smooth'});}
 document.getElementById("ui_item_group_type").value=__cur_item_type;obj=document.querySelector(".ui_main_menu_list_elem.active");if((obj!==null)&&(obj!==undefined))
 {obj.classList.remove("active");}
-document.getElementById("ui_conf_button").classList.add("active");obj=null;__id_page=5;};document.getElementById("ui_main_return_div").onclick=async function(e)
+document.getElementById("ui_conf_button").classList.add("active");obj=null;__id_page=5;ui_tooltip_hide_all();ui_tooltip_init();};document.getElementById("ui_main_return_div").onclick=async function(e)
 {e.preventDefault();ui_clear(5);if(__cur_item_type==1)
 {if(__cur_id_item_group==null)
 {ui_main_init(true);}
@@ -977,7 +976,8 @@ else if(__cur_item_type==2)
 {if(__cur_id_file_group==null)
 {ui_files_init(true);}
 else
-{ui_files_init(false);}}};document.getElementById("ui_about_button").onclick=function(e)
+{ui_files_init(false);}}
+ui_tooltip_hide_all();ui_tooltip_init();};document.getElementById("ui_about_button").onclick=function(e)
 {e.preventDefault();var dialog=new bootstrap.Modal(document.getElementById("ui_about_modal"),{});dialog.show();bootstrap.Offcanvas.getInstance(document.getElementById("ui_main_menu")).hide();};document.getElementById("ui_item_groups").onclick=function(e)
 {e.preventDefault();if(document.getElementById("ui_item_groups").selectedIndex!==-1)
 {document.getElementById("ui_item_group_name").disabled=true;document.getElementById("ui_item_group_color").disabled=true;}};document.getElementById("ui_item_group_type").onchange=function(e)
@@ -1032,7 +1032,7 @@ else if(__cur_item_type==2)
 {document.getElementById("ui_div_cont_file_work").classList.remove("d-none");document.getElementById("ui_div_cont_file").classList.add("d-none");document.getElementById("ui_main_return_div").classList.remove("d-none");document.getElementById("ui_main_menu_div").classList.add("d-none");document.getElementById("ui_float_action_button").classList.add("d-none");document.getElementById("ui_float_groups_button").classList.add("d-none");document.getElementById("ui_file_work_header").classList.remove("d-none");var obj=bootstrap.Offcanvas.getInstance(document.getElementById("ui_main_menu"))
 if(obj!==undefined&&obj!==null)
 {obj.hide();}
-obj=null;document.getElementById("ui_file_name").innerHTML="Имя файла: не выбрано";document.getElementById("ui_add_file_selector").value="";document.getElementById("ui_add_file_button").disabled=false;document.getElementById("ui_file_save_button").disabled=false;document.getElementById("ui_file_del_button").disabled=true;document.getElementById("ui_get_file_button").disabled=true;document.getElementById("ui_div_search_cont").classList.add("d-none");document.getElementById("ui_file_group").value=__cur_id_file_group;ui_calc_size();__id_page=4;}}};document.getElementById("ui_item_save_button").onclick=async function(e)
+obj=null;document.getElementById("ui_file_name").innerHTML="Имя файла: не выбран";document.getElementById("ui_add_file_selector").value="";document.getElementById("ui_add_file_button").disabled=false;document.getElementById("ui_file_save_button").disabled=false;document.getElementById("ui_file_del_button").disabled=true;document.getElementById("ui_get_file_button").disabled=true;document.getElementById("ui_div_search_cont").classList.add("d-none");document.getElementById("ui_file_group").value=__cur_id_file_group;ui_calc_size();__id_page=4;}}};document.getElementById("ui_item_save_button").onclick=async function(e)
 {e.preventDefault();if(__is_edit_item==false)
 {var res=await item_add(document.getElementById("ui_item_group").value,document.getElementById("ui_item_name").value.trim(),document.getElementById("ui_item_descr").value.trim(),document.getElementById("ui_item_login").value.trim(),document.getElementById("ui_item_pass").value.trim(),document.getElementById("ui_item_info").value.trim());}
 else
@@ -1046,7 +1046,7 @@ else
 {var res=await file_del(__cur_id_file);ui_list_element_delete(__cur_id_file);ui_files_init(false);}};document.getElementById("ui_copy_login_button").onclick=async function(e)
 {e.preventDefault();ui_copy_text(document.getElementById("ui_item_login").value);document.getElementById("ui_copy_login_button").blur();};document.getElementById("ui_copy_pass_button").onclick=async function(e)
 {e.preventDefault();ui_copy_text(document.getElementById("ui_item_pass").value);document.getElementById("ui_copy_pass_button").blur();};document.getElementById("ui_item_gen_pass_button").onclick=async function(e)
-{e.preventDefault();show_msg("Сгенерированный пароль",__crypt.gen_pass(100,true),true);};document.getElementById("ui_data_export_button").onclick=async function(e)
+{e.preventDefault();show_msg("Сгенерированные случайные данные",__crypt.gen_pass(100,true),true);};document.getElementById("ui_data_export_button").onclick=async function(e)
 {e.preventDefault();ui_modal_export_data();};document.getElementById("ui_data_import_button").onclick=async function(e)
 {e.preventDefault();ui_modal_import_data();};document.getElementById("ui_data_export_create_button").onclick=async function(e)
 {e.preventDefault();var is_with_files=document.getElementById("ui_data_export_with_files").checked;if(is_with_files!==undefined)
@@ -1084,15 +1084,17 @@ document.getElementById("ui_file_list_button").classList.add("active");obj=null;
 {document.getElementById("ui_data_export_with_files").checked=false;}}};document.getElementById("ui_data_export_pass").onclick=function(e)
 {e.preventDefault();ui_copy_text(document.getElementById("ui_data_export_pass").value);};document.getElementById("ui_float_groups_button").onclick=async function(e)
 {e.preventDefault();if(__cur_item_type==1)
-{if(document.getElementById("ui_item_group_menu_div").classList.contains("d-none")==true)
+{document.getElementById("ui_div_cont_item_cont").classList.add("d-none");if(document.getElementById("ui_item_group_menu_div").classList.contains("d-none")==true)
 {document.getElementById("ui_item_group_menu_div").classList.remove("d-none");document.getElementById("ui_float_groups_button_left").classList.remove("d-none");document.getElementById("ui_float_groups_button_right").classList.add("d-none");document.getElementById("ui_list_items_div").classList.add("border-start");var res=await conf_set_items_show_groups(true);}
 else
-{document.getElementById("ui_item_group_menu_div").classList.add("d-none");document.getElementById("ui_float_groups_button_left").classList.add("d-none");document.getElementById("ui_float_groups_button_right").classList.remove("d-none");document.getElementById("ui_list_items_div").classList.remove("border-start");var res=await conf_set_items_show_groups(false);}}
+{document.getElementById("ui_item_group_menu_div").classList.add("d-none");document.getElementById("ui_float_groups_button_left").classList.add("d-none");document.getElementById("ui_float_groups_button_right").classList.remove("d-none");document.getElementById("ui_list_items_div").classList.remove("border-start");var res=await conf_set_items_show_groups(false);}
+document.getElementById("ui_div_cont_item_cont").classList.remove("d-none");}
 else if(__cur_item_type==2)
-{if(document.getElementById("ui_file_group_menu_div").classList.contains("d-none")==true)
+{document.getElementById("ui_div_cont_file_cont").classList.add("d-none");if(document.getElementById("ui_file_group_menu_div").classList.contains("d-none")==true)
 {document.getElementById("ui_file_group_menu_div").classList.remove("d-none");document.getElementById("ui_float_groups_button_left").classList.remove("d-none");document.getElementById("ui_float_groups_button_right").classList.add("d-none");document.getElementById("ui_list_files_div").classList.add("border-start");var res=await conf_set_files_show_groups(true);}
 else
-{document.getElementById("ui_file_group_menu_div").classList.add("d-none");document.getElementById("ui_float_groups_button_left").classList.add("d-none");document.getElementById("ui_float_groups_button_right").classList.remove("d-none");document.getElementById("ui_list_files_div").classList.remove("border-start");var res=await conf_set_files_show_groups(false);}}
+{document.getElementById("ui_file_group_menu_div").classList.add("d-none");document.getElementById("ui_float_groups_button_left").classList.add("d-none");document.getElementById("ui_float_groups_button_right").classList.remove("d-none");document.getElementById("ui_list_files_div").classList.remove("border-start");var res=await conf_set_files_show_groups(false);}
+document.getElementById("ui_div_cont_file_cont").classList.remove("d-none");}
 ui_calc_size();ui_calc_position();};document.getElementById("ui_pswd").focus();__db=new db();__crypt=new crypt();__imp_file_data="";window.history.pushState(null,null,window.location.href);window.history.back();window.history.forward();__id_page=0;if(window.matchMedia('(display-mode: standalone)').matches===true)
 {window.resizeTo(1024,768);}
 window.addEventListener("resize",function()
@@ -1112,6 +1114,10 @@ else
 {var r=await show_msg_res("Подтверждение","Вы действительно хотите выйти?",true);if(r)
 {this.close(true);}});}
 catch(error)
-{}};function clear_back_timeout()
-{__back_count_app_exit=0;};
+{}
+ui_tooltip_init();};function clear_back_timeout()
+{__back_count_app_exit=0;};function ui_tooltip_init()
+{const tooltipTriggerList=document.querySelectorAll('[data-bs-toggle="tooltip"]');const tooltipList=[...tooltipTriggerList].map(tooltipTriggerEl=>new bootstrap.Tooltip(tooltipTriggerEl,{show:100,hide:1000}));}
+function ui_tooltip_hide_all()
+{const tooltipTriggerList=document.querySelectorAll('[data-bs-toggle="tooltip"]');const tooltipList=[...tooltipTriggerList].map(tooltipTriggerEl=>bootstrap.Tooltip.getInstance(tooltipTriggerEl).hide());}
 

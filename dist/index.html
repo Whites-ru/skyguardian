@@ -6,7 +6,7 @@
 
     <meta charset="utf8" />
 
-    <link rel="stylesheet" href="app_bundle_dd566f5b-a2eb-4874-8d19-8d4959e9c533.css">
+    <link rel="stylesheet" href="app_bundle_a843ab57-e6e2-4373-ab73-290788871796.css">
     <link rel="manifest" href="manifest.json">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,7 +43,7 @@
           <div id="ui_div_search_cont" style="margin-top: 5px; width: calc(100% - 80px) !important; padding: 0;">
             <form class="w-100 me-3 row">
               <input id="ui_search_text" type="search" class="form-control col w-100" placeholder="Найти..." aria-label="Search">
-              <button class="btn form-control" type="button" id="ui_filter_button" style="width: auto;">
+              <button class="btn form-control" type="button" id="ui_filter_button" style="width: auto;" data-bs-toggle="tooltip" data-bs-title="Найти">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                   </svg>
@@ -54,7 +54,7 @@
 
           <div id="ui_item_gen_pass_div" class="col d-flex" style="margin-top: 5px;">
             <h4 class="d-flex justify-content-center w-100 align-items-center">Работа с данными</h4>
-            <a id="ui_item_gen_pass_button" class="d-flex align-items-center link-dark text-decoration-none p-2 justify-content-end" role="button">
+            <a id="ui_item_gen_pass_button" class="d-flex align-items-center link-dark text-decoration-none p-2 justify-content-end" role="button" data-bs-toggle="tooltip" data-bs-title="Генерация случайных данных">
               <svg xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" fill="currentColor" class="bi bi-123" viewBox="0 0 16 16">
                 <path d="M2.873 11.297V4.142H1.699L0 5.379v1.137l1.64-1.18h.06v5.961h1.174Zm3.213-5.09v-.063c0-.618.44-1.169 1.196-1.169.676 0 1.174.44 1.174 1.106 0 .624-.42 1.101-.807 1.526L4.99 10.553v.744h4.78v-.99H6.643v-.069L8.41 8.252c.65-.724 1.237-1.332 1.237-2.27C9.646 4.849 8.723 4 7.308 4c-1.573 0-2.36 1.064-2.36 2.15v.057h1.138Zm6.559 1.883h.786c.823 0 1.374.481 1.379 1.179.01.707-.55 1.216-1.421 1.21-.77-.005-1.326-.419-1.379-.953h-1.095c.042 1.053.938 1.918 2.464 1.918 1.478 0 2.642-.839 2.62-2.144-.02-1.143-.922-1.651-1.551-1.714v-.063c.535-.09 1.347-.66 1.326-1.678-.026-1.053-.933-1.855-2.359-1.845-1.5.005-2.317.88-2.348 1.898h1.116c.032-.498.498-.944 1.206-.944.703 0 1.206.435 1.206 1.07.005.64-.504 1.106-1.2 1.106h-.75v.96Z"/>
               </svg>
@@ -83,7 +83,7 @@
       </div>
 
       <div id="ui_div_cont_item" class="container-fluid pb-3">
-        <div class="row" style="height: inherit;">
+        <div id="ui_div_cont_item_cont" class="row" style="height: inherit;">
             <div id="ui_item_group_menu_div" class="col position-sticky h-100"  style="overflow: auto; max-width: 300px;">
                 <ul id="ui_item_group_menu" class="nav nav-pills flex-column"></ul>
                 <div id="ui_item_group_menu_no_data" class="d-none align-items-center d-flex h-100 justify-content-center text-muted">Нет данных</div>
@@ -100,7 +100,7 @@
       </div>
 
       <div id="ui_div_cont_file" class="container-fluid pb-3">
-        <div class="row" style=" height: inherit;">
+        <div id="ui_div_cont_file_cont"  class="row" style=" height: inherit;">
             <div id="ui_file_group_menu_div" class="col position-sticky h-100"  style="overflow: auto; max-width: 300px;">
                 <ul id="ui_file_group_menu" class="nav nav-pills flex-column"></ul>
                 <div id="ui_file_group_menu_no_data" class="d-none align-items-center d-flex h-100 justify-content-center text-muted">Нет данных</div>
@@ -262,7 +262,7 @@
                 <label for="ui_item_login" class="form-label ">Логин</label>
               </div>
 
-              <button class="btn btn-outline-secondary col-auto" type="button" id="ui_copy_login_button">
+              <button class="btn btn-outline-secondary col-auto" type="button" id="ui_copy_login_button" data-bs-toggle="tooltip" data-bs-title="Скопировать">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                   <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
@@ -278,7 +278,7 @@
                 <input type="text" class="form-control" id="ui_item_pass" aria-describedby="ui_copy_pass_button" maxlength="365" placeholder="item password">
                 <label for="ui_item_pass" class="form-label">Пароль</label>
               </div>
-              <button class="btn btn-outline-secondary col-auto" type="button" id="ui_copy_pass_button">
+              <button class="btn btn-outline-secondary col-auto" type="button" id="ui_copy_pass_button" data-bs-toggle="tooltip" data-bs-title="Скопировать">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                   <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
@@ -318,10 +318,10 @@
           </div>
 
           <div class="border-bottom">
-              <label id="ui_file_name" class="form-label">Имя файла: не выбрано</label>
+              <label id="ui_file_name" class="form-label">Имя файла: не выбран</label>
               <input type="file" id="ui_add_file_selector" style="display: none;"/>
               <div class="py-2">
-                <button id="ui_add_file_button" type="button" class="btn btn-light">Открыть из файла</button>
+                <button id="ui_add_file_button" type="button" class="btn btn-light">Выбрать файл</button>
                 <button id="ui_get_file_button" type="button" class="btn btn-light">Скачать файл</button>
               </div>
           </div>
@@ -376,7 +376,7 @@
     <!-- Modal -->
 
     <div id="ui_about_modal" class="modal fade" tabindex="-1" aria-labelledby="ui_about_modal_label" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered"">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="ui_about_modal_label">О программе</h5>
@@ -385,7 +385,7 @@
           <div class="modal-body">
             <div class="d-flex justify-content-center"><b>SkyGuardian</b></div>
             <div class="d-flex justify-content-between"><small class="text-muted">Автор: Sergey White</small></div>
-            <div class="d-flex justify-content-between"><small class="text-muted">Сборка: dd566f5b-a2eb-4874-8d19-8d4959e9c533 от 05.01.2023 23:14:55</small></div>
+            <div class="d-flex justify-content-between"><small class="text-muted">Сборка: a843ab57-e6e2-4373-ab73-290788871796 от 14.01.2023 22:21:08</small></div>
             <small class="text-muted">Создано с использованием:</small>
             <div class="d-flex justify-content-between">
               <ol class="list-group-numbered">
@@ -478,12 +478,12 @@
           <form class="p-2">
 
             <div class="col-md-6">
-              <p>Файл экспорта</p>
               <input type="file" id="ui_import_export_data_file_selector" style="display: none;"/>
               <div class="mb-2">
-                  <button id="ui_import_export_data_file_button" type="button" class="btn btn-light">Открыть из файла</button>
+                  <button id="ui_import_export_data_file_button" type="button" class="btn btn-light">Выбрать файл</button>
               </div>
             </div>
+            
 
             <div class="form-floating mb-2">
               <textarea class="form-control" id="ui_import_export_data_pass" style="height: 200px;" maxlength="365" placeholder="export data pass"></textarea>
@@ -527,6 +527,6 @@
 
     <div id="ui_preload" class="vw-100 vh-100 d-none" style="z-index: 99999;display: block;position: absolute;top: 0;left: 0;right: 0;bottom: 0;"></div>
     
-    <script src="app_bundle_dd566f5b-a2eb-4874-8d19-8d4959e9c533.js"></script>
+    <script src="app_bundle_a843ab57-e6e2-4373-ab73-290788871796.js"></script>
   </body>
 </html>
