@@ -43,11 +43,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-      - name: Create release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-            repo_token: "${{ secrets.GITHUB_TOKEN }}"
-            prerelease: false
-            files: |
-              app_win.zip
-              app_lin.zip
