@@ -39,8 +39,6 @@ jobs:
           # Upload entire repository
           #path: './dist/'
           path: ./dist/
-            --exclude=./dist/app_lin.zip \ --exclude=./dist/app_win.zip
-            
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
