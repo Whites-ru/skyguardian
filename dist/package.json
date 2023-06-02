@@ -9,5 +9,13 @@
         "icon":"images/icon_any.png",
         "position":"center"
     },
-    "chromium-args": "--user-data-dir=./data"
+    "features":
+    {
+        "nodejs":false
+    },
+    "webkit":
+    {
+        "plugin":false
+    },
+    "chromium-args": "--disable-crash-handler=true --disable-raf-throttling"
 }
