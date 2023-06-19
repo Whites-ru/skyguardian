@@ -1,6 +1,8 @@
 /restores
 /nwjs_lin
 /nwjs_win
+/nwjs_lin_sdk
+/nwjs_win_sdk
 /wrap_lin
 /wrap_win
 /dist/app_lin/*
