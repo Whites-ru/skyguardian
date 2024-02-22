@@ -19,3 +19,5 @@
 /restore_data.py
 /dist_arch/app_lin.zip
 /dist_arch/app_win.zip
+/.vscode
+/jsmin
