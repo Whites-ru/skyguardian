@@ -671,10 +671,9 @@ refreshing=true}});ui_init();});
 //scripts/ui.js
 function ui_copy_text(val)
 {if(val.trim()!==""&&val!=null&&val!==undefined)
-{navigator.permissions.query({name:"clipboard-write"}).then(result=>{if(result.state=="granted"||result.state=="prompt")
 {navigator.clipboard.writeText(val).then(function()
 {show_toast("Данные успешно скопированы");},function()
-{show_msg("Сообщение","Произошла ошибка при доступе к буферу обмена!");});}});}};function ui_clear(op)
+{show_msg("Сообщение","Произошла ошибка при доступе к буферу обмена!");});}};function ui_clear(op)
 {if(op==1)
 {document.getElementById("ui_item_groups").disabled=false;document.getElementById("ui_item_group_type").disabled=false;document.getElementById("ui_item_group_name").value=null;document.getElementById("ui_item_group_color").value="#00CC22";document.getElementById("ui_item_group_add").disabled=false;document.getElementById("ui_item_group_edit").disabled=false;document.getElementById("ui_item_group_save").disabled=true;document.getElementById("ui_item_group_del").disabled=true;document.getElementById("ui_item_group_cancel").disabled=true;document.getElementById("ui_item_group_name").disabled=true;document.getElementById("ui_item_group_color").disabled=true;__is_edit_item_group=false;}
 else if(op==2)
