@@ -41,105 +41,105 @@ return res;};get_key_material(pass)
 {var that=this;let promise=new Promise(function(resolve,reject)
 {that.get_key_material(pass).then(function(value)
 {that.gen_key(value,salt).then(function(value)
-{resolve(value);}).catch(function(err){reject(1);});}).catch(function(err){reject(1);});});return promise;};encrypt_text(key,text)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{resolve(value);}).catch(function(_err){reject(1);});}).catch(function(_err){reject(1);});});return promise;};encrypt_text(key,text)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {let enc=new TextEncoder();let encoded=enc.encode(text);let iv=window.crypto.getRandomValues(new Uint8Array(12));let salt=window.crypto.getRandomValues(new Uint8Array(16));that.get_key(key,salt).then((res1,rej1)=>{if(rej1==undefined||rej1==null)
 {window.crypto.subtle.encrypt({name:"AES-GCM",iv:iv,tagLength:128},res1,encoded).then(function(value)
-{const hashArray_tmp=Array.from(new Uint8Array(value));let hashArray=new Uint8Array([...iv,...salt,...hashArray_tmp]);const hashHex=that.bufToB64(hashArray);resolve(hashHex);}).catch(function(err){resolve(1);});}
+{const hashArray_tmp=Array.from(new Uint8Array(value));let hashArray=new Uint8Array([...iv,...salt,...hashArray_tmp]);const hashHex=that.bufToB64(hashArray);resolve(hashHex);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});});return promise;};decrypt_text(key,text)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {let enc_text=that.b64ToBuf(text);let iv=enc_text.slice(0,12)
 let salt=enc_text.slice(12,28)
 that.get_key(key,salt).then((res1,rej1)=>{if(rej1==undefined||rej1==null)
 {window.crypto.subtle.decrypt({name:"AES-GCM",iv:iv,tagLength:128},res1,enc_text.slice(28)).then(function(value)
-{resolve(new TextDecoder().decode(value));}).catch(function(err){resolve(1);});}
+{resolve(new TextDecoder().decode(value));}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});});return promise;};encrypt_file(key,body)
 {var that=this;let promise=new Promise(function(resolve,reject)
 {let iv=window.crypto.getRandomValues(new Uint8Array(12));let salt=window.crypto.getRandomValues(new Uint8Array(16));that.get_key(key,salt).then((res1,rej1)=>{if(rej1==undefined||rej1==null)
 {window.crypto.subtle.encrypt({name:"AES-GCM",iv:iv,tagLength:128},res1,body).then(function(value)
-{const hashArray_tmp=Array.from(new Uint8Array(value));let hashArray=new Uint8Array([...iv,...salt,...hashArray_tmp]);const hashHex=that.bufToB64(hashArray);resolve(hashHex);}).catch(function(err){reject(1);});}
+{const hashArray_tmp=Array.from(new Uint8Array(value));let hashArray=new Uint8Array([...iv,...salt,...hashArray_tmp]);const hashHex=that.bufToB64(hashArray);resolve(hashHex);}).catch(function(_err){reject(1);});}
 else
 {reject(1);}});});return promise;};decrypt_file(key,text)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {let enc_text=that.b64ToBuf(text);let iv=enc_text.slice(0,12)
 let salt=enc_text.slice(12,28)
 that.get_key(key,salt).then((res1,rej1)=>{if(rej1==undefined||rej1==null)
 {window.crypto.subtle.decrypt({name:"AES-GCM",iv:iv,tagLength:128},res1,enc_text.slice(28)).then(function(value)
-{resolve(value);}).catch(function(err){resolve(1);});}
+{resolve(value);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});});return promise;};}
 
 //scripts/store.js
 class db
 {constructor()
-{this.db_name="db";localforage.setDriver(localforage.INDEXEDDB);this.t_item_group=localforage.createInstance({name:this.db_name,storeName:"t_item_group",description:""});this.t_item=localforage.createInstance({name:this.db_name,storeName:"t_item",description:""});this.t_file=localforage.createInstance({name:this.db_name,storeName:"t_file",description:""});this.t_conf=localforage.createInstance({name:this.db_name,storeName:"t_conf",description:""});};item_group_add(type,name,color)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{this.db_name="db";localforage.setDriver(localforage.INDEXEDDB);this.t_item_group=localforage.createInstance({name:this.db_name,storeName:"t_item_group",description:"Item groups"});this.t_item=localforage.createInstance({name:this.db_name,storeName:"t_item",description:"Items"});this.t_file=localforage.createInstance({name:this.db_name,storeName:"t_file",description:"Files"});this.t_conf=localforage.createInstance({name:this.db_name,storeName:"t_conf",description:"Configurations"});};item_group_add(type,name,color)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(type!==""&&type!==undefined&&name!==""&&name!==undefined&&color!==""&&color!==undefined)
-{var uuid=self.crypto.randomUUID();that.t_item_group.setItem(uuid,{"name":name,"color":color,"type":type}).then(function(value)
-{resolve(uuid);}).catch(function(err){resolve(1);});}
+{var uuid=self.crypto.randomUUID();that.t_item_group.setItem(uuid,{"name":name,"color":color,"type":type}).then(function(_value)
+{resolve(uuid);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};item_group_upd(id,type,name,color)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id!==""&&id!==undefined&&type!==""&&type!==undefined&&name!==""&&name!==undefined&&color!==""&&color!==undefined)
-{that.t_item_group.setItem(id,{"name":name,"color":color,"type":type}).then(function(value)
-{resolve(0);}).catch(function(err){resolve(1);});}
+{that.t_item_group.setItem(id,{"name":name,"color":color,"type":type}).then(function(_value)
+{resolve(0);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};item_group_del(id,type)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id!==""&&id!==undefined)
 {that.t_item_group.removeItem(id).then(async function()
 {var res=null;if(type==1)
 {res=await that.item_del_by_group(id);}
 else if(type==2)
 {res=await that.file_del_by_group(id);}
-resolve(res);}).catch(function(err)
+resolve(res);}).catch(function(_err)
 {resolve(1);});}
 else
 {resolve(1);}});return promise;};item_group_type_get_all(type)
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var res_arr=[];that.t_item_group.iterate(function(value,key,iterationNumber){if("type"in value)
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var res_arr=[];that.t_item_group.iterate(function(value,key,_iterationNumber){if("type"in value)
 {if(value["type"]==type)
 {value["id"]=key;res_arr.push(value);}}}).then(function()
 {res_arr.sort(function(a,b)
-{return a.name.localeCompare(b.name);});resolve(res_arr);}).catch(function(err){resolve(1);});});return promise;};item_group_check_id(id)
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var is_find=false;that.t_item_group.iterate(function(value,key,iterationNumber)
+{return a.name.localeCompare(b.name);});resolve(res_arr);}).catch(function(_err){resolve(1);});});return promise;};item_group_check_id(id)
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var is_find=false;that.t_item_group.iterate(function(_value,key,_iterationNumber)
 {if(key==id)
-{is_find=true;return;}}).then(function(){resolve(is_find);}).catch(function(err){resolve(1);});});return promise;};item_add(id_group,name,descr,hide_data)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{is_find=true;return;}}).then(function(){resolve(is_find);}).catch(function(_err){resolve(1);});});return promise;};item_add(id_group,name,descr,hide_data)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id_group!==""&&id_group!==undefined&&name!==""&&name!==undefined&&descr!==""&&descr!==undefined&&hide_data!==""&&hide_data!==undefined)
-{var uuid=self.crypto.randomUUID();var time_stamp=Date.now();that.t_item.setItem(uuid,{"id_group":id_group,"name":name,"descr":descr,"hide_data":hide_data,"time_stamp":time_stamp,"is_elect":false}).then(function(value)
-{resolve(uuid);}).catch(function(err){resolve(1);});}
+{var uuid=self.crypto.randomUUID();var time_stamp=Date.now();that.t_item.setItem(uuid,{"id_group":id_group,"name":name,"descr":descr,"hide_data":hide_data,"time_stamp":time_stamp,"is_elect":false}).then(function(_value)
+{resolve(uuid);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};item_upd(id,id_group,name,descr,hide_data,is_elect)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id!==""&&id!==undefined&&id_group!==""&&id_group!==undefined&&name!==""&&name!==undefined&&descr!==""&&descr!==undefined&&hide_data!==""&&hide_data!==undefined)
-{var time_stamp=Date.now();that.t_item.setItem(id,{"id_group":id_group,"name":name,"descr":descr,"hide_data":hide_data,"time_stamp":time_stamp,"is_elect":is_elect}).then(function(value)
-{resolve(0);}).catch(function(err){resolve(1);});}
+{var time_stamp=Date.now();that.t_item.setItem(id,{"id_group":id_group,"name":name,"descr":descr,"hide_data":hide_data,"time_stamp":time_stamp,"is_elect":is_elect}).then(function(_value)
+{resolve(0);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};item_del(id)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id!==""&&id!==undefined)
 {that.t_item.removeItem(id).then(function()
-{resolve(0);}).catch(function(err){resolve(1);});}
+{resolve(0);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};item_get_type_all(id_group)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {var res_arr=[];that.t_item.iterate(function(value,key,_)
 {if("id_group"in value)
 {if(value["id_group"]==id_group)
 {res_arr.push({"id":key,"name":value["name"],"descr":value["descr"],"id_group":value["id_group"],"is_elect":value["is_elect"]});}}}).then(function()
-{resolve(res_arr);}).catch(function(err){resolve(1);});});return promise;};item_get_type_count(id_group)
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var res_count=0;that.t_item.iterate(function(value,key,iterationNumber)
+{resolve(res_arr);}).catch(function(_err){resolve(1);});});return promise;};item_get_type_count(id_group)
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var res_count=0;that.t_item.iterate(function(value,_key,_iterationNumber)
 {if("id_group"in value)
 {if(value["id_group"]==id_group)
 {res_count++;}}}).then(function()
-{resolve(res_count);}).catch(function(err){resolve(0);});});return promise;};item_del_by_group(id_group)
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var ids=[];that.t_item.iterate(function(value,key,iterationNumber)
+{resolve(res_count);}).catch(function(_err){resolve(0);});});return promise;};item_del_by_group(id_group)
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var ids=[];that.t_item.iterate(function(value,key,_iterationNumber)
 {if("id_group"in value)
 {if(value["id_group"]==id_group)
 {ids.push(key);}}}).then(async function()
@@ -149,85 +149,85 @@ else
 if(is_ok_del==0)
 {resolve(0);}
 else
-{resolve(1);}}).catch(function(err)
+{resolve(1);}}).catch(function(_err)
 {resolve(1);});});return promise;};item_get_all()
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var res_arr=[];that.t_item.iterate(function(value,key,iterationNumber)
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var res_arr=[];that.t_item.iterate(function(value,key,_iterationNumber)
 {res_arr.push({"id":key,"name":value["name"],"descr":value["descr"],"hide_data":value["hide_data"],"id_group":value["id_group"],"is_elect":value["is_elect"]});}).then(function()
 {res_arr.sort(function(a,b)
-{return a.name.localeCompare(b.name);});resolve(res_arr);}).catch(function(err){resolve(1);});});return promise;};item_get(id)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{return a.name.localeCompare(b.name);});resolve(res_arr);}).catch(function(_err){resolve(1);});});return promise;};item_get(id)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id!==""&&id!==undefined)
-{that.t_item.getItem(id).then(function(value){resolve(value);}).catch(function(err){resolve(1);});}
+{that.t_item.getItem(id).then(function(value){resolve(value);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};item_check_id(id)
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var is_find=false;that.t_item.iterate(function(value,key,iterationNumber)
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var is_find=false;that.t_item.iterate(function(_value,key,_iterationNumber)
 {if(key==id)
-{is_find=true;return;}}).then(function(){resolve(is_find);}).catch(function(err){resolve(1);});});return promise;};item_set_elect(id,is_elect)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{is_find=true;return;}}).then(function(){resolve(is_find);}).catch(function(_err){resolve(1);});});return promise;};item_set_elect(id,is_elect)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id!==""&&id!==undefined)
-{that.t_item.getItem(id).then(function(item){that.t_item.setItem(id,{"id_group":item["id_group"],"name":item["name"],"descr":item["descr"],"hide_data":item["hide_data"],"time_stamp":item["time_stamp"],"is_elect":is_elect}).then(function(value)
-{resolve(0);}).catch(function(err){resolve(1);});}).catch(function(err){resolve(1);});}
+{that.t_item.getItem(id).then(function(item){that.t_item.setItem(id,{"id_group":item["id_group"],"name":item["name"],"descr":item["descr"],"hide_data":item["hide_data"],"time_stamp":item["time_stamp"],"is_elect":is_elect}).then(function(_value)
+{resolve(0);}).catch(function(_err){resolve(1);});}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};conf_init(m_pass)
 {var that=this;let promise=new Promise(function(res,rej)
 {that.t_conf.getItem("1").then(function(value)
 {if(value===undefined||value===null)
-{that.t_conf.setItem("1",{"m_pass":m_pass,"idle_time":15,"items_show_groups":true,"files_show_groups":true,"first_login":true}).then(function(value)
-{res(0);}).catch(function(err){rej(1);});}}).catch(function(err){rej(1);});});return promise;};conf_change_m_pass(m_pass)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{that.t_conf.setItem("1",{"m_pass":m_pass,"idle_time":15,"items_show_groups":true,"files_show_groups":true,"first_login":true}).then(function(_value)
+{res(0);}).catch(function(_err){rej(1);});}}).catch(function(_err){rej(1);});});return promise;};conf_change_m_pass(m_pass)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {that.t_conf.getItem("1").then(function(value)
-{that.t_conf.setItem("1",{"m_pass":m_pass,"idle_time":value["idle_time"],"items_show_groups":value["items_show_groups"],"files_show_groups":value["files_show_groups"],"first_login":false}).then(function(value)
-{resolve(0);}).catch(function(err){resolve(1);});}).catch(function(err){resolve(1);});});return promise;};conf_change_idle_time(idle_time)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{that.t_conf.setItem("1",{"m_pass":m_pass,"idle_time":value["idle_time"],"items_show_groups":value["items_show_groups"],"files_show_groups":value["files_show_groups"],"first_login":false}).then(function(_value)
+{resolve(0);}).catch(function(_err){resolve(1);});}).catch(function(_err){resolve(1);});});return promise;};conf_change_idle_time(idle_time)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {that.t_conf.getItem("1").then(function(value)
-{that.t_conf.setItem("1",{"m_pass":value["m_pass"],"idle_time":idle_time,"items_show_groups":value["items_show_groups"],"files_show_groups":value["files_show_groups"],"first_login":value["first_login"]}).then(function(value)
-{resolve(0);}).catch(function(err){resolve(1);});}).catch(function(err){resolve(1);});});return promise;};conf_get_m_pass()
-{var that=this;let promise=new Promise(function(resolve,reject)
+{that.t_conf.setItem("1",{"m_pass":value["m_pass"],"idle_time":idle_time,"items_show_groups":value["items_show_groups"],"files_show_groups":value["files_show_groups"],"first_login":value["first_login"]}).then(function(_value)
+{resolve(0);}).catch(function(_err){resolve(1);});}).catch(function(_err){resolve(1);});});return promise;};conf_get_m_pass()
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {that.t_conf.getItem("1").then(function(value)
-{resolve(value["m_pass"]);}).catch(function(err)
+{resolve(value["m_pass"]);}).catch(function(_err)
 {resolve(1);});});return promise;};conf_get_idle_time()
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {that.t_conf.getItem("1").then(function(value)
-{resolve(value["idle_time"]);}).catch(function(err){resolve(1);});});return promise;};conf_set_items_show_groups(items_show_groups)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{resolve(value["idle_time"]);}).catch(function(_err){resolve(1);});});return promise;};conf_set_items_show_groups(items_show_groups)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {that.t_conf.getItem("1").then(function(value)
-{that.t_conf.setItem("1",{"m_pass":value["m_pass"],"idle_time":value["idle_time"],"items_show_groups":items_show_groups,"files_show_groups":value["files_show_groups"],"first_login":value["first_login"]}).then(function(value)
-{resolve(0);}).catch(function(err){resolve(1);});}).catch(function(err){resolve(1);});});return promise;};conf_set_files_show_groups(files_show_groups)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{that.t_conf.setItem("1",{"m_pass":value["m_pass"],"idle_time":value["idle_time"],"items_show_groups":items_show_groups,"files_show_groups":value["files_show_groups"],"first_login":value["first_login"]}).then(function(_value)
+{resolve(0);}).catch(function(_err){resolve(1);});}).catch(function(_err){resolve(1);});});return promise;};conf_set_files_show_groups(files_show_groups)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {that.t_conf.getItem("1").then(function(value)
-{that.t_conf.setItem("1",{"m_pass":value["m_pass"],"idle_time":value["idle_time"],"items_show_groups":value["items_show_groups"],"files_show_groups":files_show_groups,"first_login":value["first_login"]}).then(function(value)
-{resolve(0);}).catch(function(err){resolve(1);});}).catch(function(err){resolve(1);});});return promise;};conf_get_items_show_groups()
-{var that=this;let promise=new Promise(function(resolve,reject)
+{that.t_conf.setItem("1",{"m_pass":value["m_pass"],"idle_time":value["idle_time"],"items_show_groups":value["items_show_groups"],"files_show_groups":files_show_groups,"first_login":value["first_login"]}).then(function(_value)
+{resolve(0);}).catch(function(_err){resolve(1);});}).catch(function(_err){resolve(1);});});return promise;};conf_get_items_show_groups()
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {that.t_conf.getItem("1").then(function(value)
-{resolve(value["items_show_groups"]);}).catch(function(err){resolve(1);});});return promise;};conf_get_files_show_groups()
-{var that=this;let promise=new Promise(function(resolve,reject)
+{resolve(value["items_show_groups"]);}).catch(function(_err){resolve(1);});});return promise;};conf_get_files_show_groups()
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {that.t_conf.getItem("1").then(function(value)
-{resolve(value["files_show_groups"]);}).catch(function(err){resolve(1);});});return promise;};conf_get_first_login()
-{var that=this;let promise=new Promise(function(resolve,reject)
+{resolve(value["files_show_groups"]);}).catch(function(_err){resolve(1);});});return promise;};conf_get_first_login()
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {that.t_conf.getItem("1").then(function(value)
-{resolve(value["first_login"]);}).catch(function(err){resolve(1);});});return promise;};file_add(id_group,name,ext,body)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{resolve(value["first_login"]);}).catch(function(_err){resolve(1);});});return promise;};file_add(id_group,name,ext,body)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id_group!==""&&id_group!==undefined&&name!==""&&name!==undefined&&ext!==""&&ext!==undefined&&body!==""&&body!==undefined)
-{var uuid=self.crypto.randomUUID();that.t_file.setItem(uuid,{"id_group":id_group,"name":name,"ext":ext,"body":body}).then(function(value)
-{resolve(uuid);}).catch(function(err){resolve(1);});}
+{var uuid=self.crypto.randomUUID();that.t_file.setItem(uuid,{"id_group":id_group,"name":name,"ext":ext,"body":body}).then(function(_value)
+{resolve(uuid);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};file_upd(id,id_group,name,ext,body)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id!==""&&id!==undefined&&id_group!==""&&id_group!==undefined&&name!==""&&name!==undefined&&ext!==""&&ext!==undefined&&body!==""&&body!==undefined)
-{that.t_file.setItem(id,{"id_group":id_group,"name":name,"ext":ext,"body":body}).then(function(value)
-{resolve(0);}).catch(function(err){resolve(1);});}
+{that.t_file.setItem(id,{"id_group":id_group,"name":name,"ext":ext,"body":body}).then(function(_value)
+{resolve(0);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};file_del(id)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id!==""&&id!==undefined)
 {that.t_file.removeItem(id).then(function()
-{resolve(0);}).catch(function(err){resolve(1);});}
+{resolve(0);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};file_del_by_group(id_group)
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var ids=[];that.t_file.iterate(function(value,key,iterationNumber)
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var ids=[];that.t_file.iterate(function(value,key,_iterationNumber)
 {if("id_group"in value)
 {if(value["id_group"]==id_group)
 {ids.push(key);}}}).then(async function()
@@ -237,39 +237,39 @@ else
 if(is_ok_del==0)
 {resolve(0);}
 else
-{resolve(1);}}).catch(function(err)
+{resolve(1);}}).catch(function(_err)
 {resolve(1);});});return promise;};file_get_by_group_all(id_group)
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var res_arr=[];that.t_file.iterate(function(value,key,iterationNumber){if("id_group"in value)
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var res_arr=[];that.t_file.iterate(function(value,key,_iterationNumber){if("id_group"in value)
 {if(value["id_group"]==id_group)
 {res_arr.push({"id":key,"name":value["name"],"ext":value["ext"],"id_group":value["id_group"]});}}}).then(function()
-{resolve(res_arr);}).catch(function(err){resolve(1);});});return promise;};file_get_by_group_count(id_group)
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var res_count=0;that.t_file.iterate(function(value,key,iterationNumber)
+{resolve(res_arr);}).catch(function(_err){resolve(1);});});return promise;};file_get_by_group_count(id_group)
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var res_count=0;that.t_file.iterate(function(value,_key,_iterationNumber)
 {if("id_group"in value)
 {if(value["id_group"]==id_group)
 {res_count++;}}}).then(function()
-{resolve(res_count);}).catch(function(err){resolve(0);});});return promise;};file_get_all()
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var res_arr=[];that.t_file.iterate(function(value,key,iterationNumber)
+{resolve(res_count);}).catch(function(_err){resolve(0);});});return promise;};file_get_all()
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var res_arr=[];that.t_file.iterate(function(value,key,_iterationNumber)
 {res_arr.push({"id":key,"name":value["name"],"ext":value["ext"],"id_group":value["id_group"]});}).then(function()
 {res_arr.sort(function(a,b)
-{return a.name.localeCompare(b.name);});resolve(res_arr);}).catch(function(err){resolve(1);});});return promise;};file_get(id)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{return a.name.localeCompare(b.name);});resolve(res_arr);}).catch(function(_err){resolve(1);});});return promise;};file_get(id)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id!==""&&id!==undefined)
 {that.t_file.getItem(id).then(function(value)
-{resolve({"id":value["id"],"name":value["name"],"ext":value["ext"],"id_group":value["id_group"]});}).catch(function(err){resolve(1);});}
+{resolve({"id":value["id"],"name":value["name"],"ext":value["ext"],"id_group":value["id_group"]});}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};file_get_body(id)
-{var that=this;let promise=new Promise(function(resolve,reject)
+{var that=this;let promise=new Promise(function(resolve,_reject)
 {if(id!==""&&id!==undefined)
-{that.t_file.getItem(id).then(function(value){resolve(value);}).catch(function(err){resolve(1);});}
+{that.t_file.getItem(id).then(function(value){resolve(value);}).catch(function(_err){resolve(1);});}
 else
 {resolve(1);}});return promise;};file_check_id(id)
-{var that=this;let promise=new Promise(function(resolve,reject)
-{var is_find=false;that.t_file.iterate(function(value,key,iterationNumber)
+{var that=this;let promise=new Promise(function(resolve,_reject)
+{var is_find=false;that.t_file.iterate(function(_value,key,_iterationNumber)
 {if(key==id)
-{is_find=true;return;}}).then(function(){resolve(is_find);}).catch(function(err){resolve(1);});});return promise;};}
+{is_find=true;return;}}).then(function(){resolve(is_find);}).catch(function(_err){resolve(1);});});return promise;};}
 
 //scripts/app.js
 var __db=null;var __crypt=null;var __cur_blob=null;var __m_pass=null;var __cur_item_type=1;var __is_edit_item_group=false;var __is_edit_item=false;var __cur_id_item_group=null;var __cur_id_item=null;var __imp_file_data="";var __cur_id_file_group=null;var __cur_id_file=null;var idle_timer;var idle_events=["load","mousemove","mousedown","touchstart","click","keydown","scroll"];var __idle_time=10;var __back_count_app_exit=0;var __back_timeout=null;var __id_page=0;function read_file(files)
@@ -280,18 +280,18 @@ const fsize=Math.round((files.item(0).size/1024/1024));if(fsize>30)
 let file=files[0];if(file!==undefined)
 {ui_preload(true);const reader=new FileReader();reader.addEventListener("load",(event)=>{var ext=file.type;if(ext==null||ext==undefined||ext=="")
 {ext="application/octet-stream";}
-__cur_blob={"name":file.name,"ext":ext,"body":event.target.result};document.getElementById("ui_file_name").innerHTML="Имя файла: <b>"+file.name+"</b>";ui_preload(false);});reader.addEventListener("error",(event)=>{ui_preload(false);show_msg("Сообщение","Произошла ошибка при загрузке файла! (1)");});reader.addEventListener("abort",(event)=>{ui_preload(false);show_msg("Сообщение","Произошла ошибка при загрузке файла! (2)");});reader.readAsArrayBuffer(file);}};function read_text_file(files)
+__cur_blob={"name":file.name,"ext":ext,"body":event.target.result};document.getElementById("ui_file_name").innerHTML="Имя файла: <b>"+file.name+"</b>";ui_preload(false);});reader.addEventListener("error",(_event)=>{ui_preload(false);show_msg("Сообщение","Произошла ошибка при загрузке файла! (1)");});reader.addEventListener("abort",(_event)=>{ui_preload(false);show_msg("Сообщение","Произошла ошибка при загрузке файла! (2)");});reader.readAsArrayBuffer(file);}};function read_text_file(files)
 {__imp_file_data="";if(!files.length)
 {show_msg("Сообщение","Выберите файл!");return;}
 const fsize=Math.round((files.item(0).size/1024/1024));if(fsize>300)
 {show_msg("Сообщение","Выбранный файл слишком большой (максимум 300 Мб)!");return;}
 let file=files[0];if(file!==undefined)
-{const reader=new FileReader();ui_preload(true);reader.addEventListener("load",(event)=>{__imp_file_data=event.target.result;ui_preload(false);});reader.addEventListener("error",(event)=>{ui_preload(false);show_msg("Сообщение","Произошла ошибка при загрузке файла! (1)");});reader.addEventListener("abort",(event)=>{ui_preload(false);show_msg("Сообщение","Произошла ошибка при загрузке файла! (2)");});reader.readAsText(file);}}
+{const reader=new FileReader();ui_preload(true);reader.addEventListener("load",(event)=>{__imp_file_data=event.target.result;ui_preload(false);});reader.addEventListener("error",(_event)=>{ui_preload(false);show_msg("Сообщение","Произошла ошибка при загрузке файла! (1)");});reader.addEventListener("abort",(_event)=>{ui_preload(false);show_msg("Сообщение","Произошла ошибка при загрузке файла! (2)");});reader.readAsText(file);}}
 function download_file(content,fileName,contentType)
 {var a=document.createElement("a");var file=new Blob([content],{type:contentType});a.href=URL.createObjectURL(file);a.download=fileName;a.click();a.remove();show_toast("Файл успешно получен");};function get_now_date_time_string()
 {const currentDate=new Date();const currentDayOfMonth=currentDate.getDate();const currentMonth=currentDate.getMonth();const currentYear=currentDate.getFullYear();const currentHour=currentDate.getHours();const currentMinute=currentDate.getMinutes();const currentSecond=currentDate.getSeconds();const dateString=currentYear+""+currentDayOfMonth+""+(currentMonth+1)+"_"+currentHour+"_"+currentMinute+"_"+currentSecond;return dateString;};async function conf_init()
 {if(navigator.storage&&navigator.storage.persist)
-{const isPersisted=await navigator.storage.persist();}
+{const _isPersisted=await navigator.storage.persist();}
 var ret=1;var res=await __db.conf_get_m_pass();if(res==1)
 {var res1=await __crypt.encrypt_text("password",__crypt.gen_pass(365,true));if(res1!==1)
 {var res2=await __db.conf_init(res1);if(res2!==1)
